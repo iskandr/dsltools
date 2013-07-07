@@ -7,15 +7,15 @@ import sys
 
 setup(
     name="TreeLike",
-    description="Helpers for creating and traversing recursively nested data structures in Python." 
-    long_description='''
+    description="Helpers for creating and traversing recursively nested data structures in Python.", 
+    long_description="""
 TreeLike
 ========
 
 Helper classes for creating and traversing recursively nested data structures in Python.  
 Useful when simple languages and abstract value domains like type and shape systems. 
 
-''',
+""",
     classifiers=['Development Status :: 3 - Alpha',
                  'Topic :: Software Development :: Libraries',
                  'License :: OSI Approved :: BSD License',

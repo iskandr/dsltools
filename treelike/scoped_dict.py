@@ -1,4 +1,4 @@
-class ScopedDictionary(object):
+class ScopedDict(object):
   def __init__(self):
     self.scopes = []
     

@@ -1,3 +1,4 @@
+from dispatch import dispatch
 from nested_blocks import NestedBlocks
 from node import Node
 from scoped_set import ScopedSet

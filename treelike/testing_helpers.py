@@ -47,7 +47,10 @@ def eq(x,y):
     return np.isscalar(x) and np.isnan(y)
   else:
     return np.allclose(x,y)
-
+  
+def expect_eq(actual,expected):
+  assert eq(actual,expected), "Expected %s but got %s" % (expected,actual)
+  
 def copy(x):
   if isinstance(x, np.ndarray):
     return x.copy()

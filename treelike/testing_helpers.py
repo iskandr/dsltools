@@ -31,6 +31,8 @@ def run_local_tests(locals_dict = None):
   return run_local_functions("test_", locals_dict)
 
 def eq(x,y):
+  if x is None:
+    return y is None 
   if isinstance(x, np.ndarray) and not isinstance(y, np.ndarray):
     return False
   if isinstance(y, np.ndarray):
@@ -48,8 +50,12 @@ def eq(x,y):
   else:
     return np.allclose(x,y)
   
-def expect_eq(actual,expected):
-  assert eq(actual,expected), "Expected %s but got %s" % (expected,actual)
+def expect_eq(actual,expected, test_name = None):
+  if test_name is None:
+    test_name = ""
+  else: 
+    test_name = "[" + test_name + "] "
+  assert eq(actual,expected), "%sExpected %s but got %s" % (test_name, expected,actual)
   
 def copy(x):
   if isinstance(x, np.ndarray):

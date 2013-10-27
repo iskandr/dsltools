@@ -47,25 +47,11 @@ def eq(x,y):
   """ 
   if x is None:
     return y is None 
-  elif isinstance(x, np.ndarray) and not isinstance(y, np.ndarray):
-    return False
-  elif isinstance(x, tuple) or isinstance(y, tuple):
-    return type(x) == type(y) and len(x) == len(y) and all(xi == yi for xi, yi in zip(x,y))
-  elif isinstance(y, np.ndarray):
-    if isinstance(x, np.ndarray) and x.shape == y.shape:
-      err = abs(np.mean(np.ravel(x) - np.ravel(y)))
-      m = abs(np.mean(np.ravel(x)))
-      if np.abs(m) < 0.000001:
-        m = 0.000001
-      if not np.all(np.ravel(x) == np.ravel(y)) and err/m > 0.001:
-        print "err:", err
-        print "err/m:", err/m
-        return False
-      else:
-        return True
   elif np.isscalar(x) and np.isnan(x):
     return np.isscalar(x) and np.isnan(y)
-  else:
+  elif isinstance(x, tuple) or isinstance(y, tuple):
+    return type(x) == type(y) and len(x) == len(y) and all(eq(xi,yi) for xi, yi in zip(x,y))
+  elif isinstance(x, np.ndarray) or isinstance(y, np.ndarray):
     try:
       x = np.asarray(x)
     except:
@@ -74,8 +60,10 @@ def eq(x,y):
       y = np.asarray(y)
     except:
       return False
-    return np.allclose(x,y)
-  
+    return x.shape == y.shape and x.dtype == y.dtype and np.allclose(x,y)
+  else:
+    return x == y
+    
 def expect_eq(actual,expected, test_name = None):
   if test_name is None:
     test_name = ""

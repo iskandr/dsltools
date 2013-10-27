@@ -47,9 +47,11 @@ def eq(x,y):
   """ 
   if x is None:
     return y is None 
-  if isinstance(x, np.ndarray) and not isinstance(y, np.ndarray):
+  elif isinstance(x, np.ndarray) and not isinstance(y, np.ndarray):
     return False
-  if isinstance(y, np.ndarray):
+  elif isinstance(x, tuple) or isinstance(y, tuple):
+    return type(x) == type(y) and len(x) == len(y) and all(xi == yi for xi, yi in zip(x,y))
+  elif isinstance(y, np.ndarray):
     if isinstance(x, np.ndarray) and x.shape == y.shape:
       err = abs(np.mean(np.ravel(x) - np.ravel(y)))
       m = abs(np.mean(np.ravel(x)))
@@ -64,6 +66,14 @@ def eq(x,y):
   elif np.isscalar(x) and np.isnan(x):
     return np.isscalar(x) and np.isnan(y)
   else:
+    try:
+      x = np.asarray(x)
+    except:
+      return False 
+    try:
+      y = np.asarray(y)
+    except:
+      return False
     return np.allclose(x,y)
   
 def expect_eq(actual,expected, test_name = None):

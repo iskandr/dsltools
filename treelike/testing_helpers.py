@@ -53,7 +53,7 @@ def eq(x,y):
     return type(x) == type(y) and len(x) == len(y) and all(eq(xi,yi) for xi, yi in zip(x,y))
   else:
     try:
-      return np.allclose(x,y)
+      return np.allclose(x,y, atol=0.0001, rtol=0.001)
     except:
       return False 
     

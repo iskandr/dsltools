@@ -51,19 +51,9 @@ def eq(x,y):
     return np.isscalar(x) and np.isnan(y)
   elif isinstance(x, tuple) or isinstance(y, tuple):
     return type(x) == type(y) and len(x) == len(y) and all(eq(xi,yi) for xi, yi in zip(x,y))
-  elif isinstance(x, np.ndarray) or isinstance(y, np.ndarray):
-    try:
-      x = np.asarray(x)
-    except:
-      return False 
-    try:
-      y = np.asarray(y)
-    except:
-      return False
-    return x.shape == y.shape and x.dtype == y.dtype and np.allclose(x,y)
   else:
     try:
-      return x == y
+      return np.allclose(x,y)
     except:
       return False 
     

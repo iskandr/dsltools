@@ -25,7 +25,7 @@ Useful when simple languages and abstract value domains like type and shape syst
     author="Alex Rubinsteyn",
     author_email="alexr@cs.nyu.edu",
     license="BSD",
-    version="0.2.2",
+    version="0.2.3",
     url="http://github.com/iskandr/treelike",
     packages=[ 'treelike'],
     package_dir={ '' : '.' },

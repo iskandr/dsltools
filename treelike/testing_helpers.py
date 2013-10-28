@@ -62,7 +62,10 @@ def eq(x,y):
       return False
     return x.shape == y.shape and x.dtype == y.dtype and np.allclose(x,y)
   else:
-    return x == y
+    try:
+      return x == y
+    except:
+      return False 
     
 def expect_eq(actual,expected, test_name = None):
   if test_name is None:

@@ -38,3 +38,6 @@ class ScopedDict(object):
       if key in scope:
         return True 
     return False 
+
+  def __str__(self):
+    return "ScopedDict({%s})" % ", ".join(str(d) for d in self.scopes)

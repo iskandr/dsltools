@@ -6,7 +6,7 @@ import sys
 
 
 setup(
-    name="TreeLike",
+    name="dsltools",
     description="Helpers for creating and traversing recursively nested data structures in Python.", 
     long_description="""
 TreeLike
@@ -25,9 +25,9 @@ Useful when simple languages and abstract value domains like type and shape syst
     author="Alex Rubinsteyn",
     author_email="alexr@cs.nyu.edu",
     license="BSD",
-    version="0.2.4",
-    url="http://github.com/iskandr/treelike",
-    packages=[ 'treelike'],
+    version="0.2.5",
+    url="http://github.com/iskandr/dsltools",
+    packages=[ 'dsltools'],
     package_dir={ '' : '.' },
     install_requires=[] 
     )

@@ -30,6 +30,14 @@ class ScopedDict(object):
   def __setitem__(self, key, value):
     self.scopes[-1][key] = value 
     
+  def __delitem__(self, key):
+    """
+    Delete the key from any scopes in which it's present
+    """
+    for d in self.scopes:
+      if key in d:
+        del d[key]
+  
   def setdefault(self, key, value):
     self.scopes[-1].setdefault(key, value)
   
